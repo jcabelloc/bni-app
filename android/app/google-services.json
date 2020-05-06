@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "461349550460",
+    "firebase_url": "https://bni-dev.firebaseio.com",
+    "project_id": "bni-dev",
+    "storage_bucket": "bni-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:461349550460:android:35a5129ea87cb6ba810cf9",
+        "android_client_info": {
+          "package_name": "pe.itana.bnidev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "461349550460-9m505vhhitui4pvtooaoft41r32ujefj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe9CmSumjXFMGyOAwoGbWpQ7YWW-Pb3tc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "461349550460-9m505vhhitui4pvtooaoft41r32ujefj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
