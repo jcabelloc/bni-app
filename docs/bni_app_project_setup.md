@@ -1,8 +1,12 @@
 # Configuracion del Proyecto
 
-###
-* ... varias configuraciones iniciales fueron omitidas
+### Generacion de ic_launcher
+* Fondo blanco
 
+### Dependencias y recursos agregados
+* Spinner para mostrar progreso: modal_progress_hud,
+* intl: Formateo de fechas
+* Tipo de font: Pacifico
 
 
 
