@@ -54,8 +54,10 @@ class InicioPage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
                               Container(
-                                child: Text(DateFormat("dd 'de' MMM", 'es')
-                                    .format(proximaSesion?.fechaHora)),
+                                child: Text(proximaSesion?.fechaHora == null
+                                    ? ' '
+                                    : DateFormat("dd 'de' MMM", 'es')
+                                        .format(proximaSesion?.fechaHora)),
                               ),
                             ],
                           ),
@@ -69,8 +71,10 @@ class InicioPage extends StatelessWidget {
                                 child: Container(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    DateFormat("HH':'mm", 'es')
-                                        .format(proximaSesion?.fechaHora),
+                                    proximaSesion?.fechaHora == null
+                                        ? ' '
+                                        : DateFormat("HH':'mm", 'es')
+                                            .format(proximaSesion?.fechaHora),
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),
@@ -91,8 +95,8 @@ class InicioPage extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Text(proximaSesion?.direccion),
-                                      Text(proximaSesion?.lugar)
+                                      Text(proximaSesion?.direccion ?? ''),
+                                      Text(proximaSesion?.lugar ?? '')
                                     ],
                                   ),
                                 ),
