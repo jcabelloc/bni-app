@@ -50,10 +50,19 @@ class ReferenciasSearchPage extends SearchDelegate {
             final asistenciasSugeridas = query.isEmpty
                 ? asistencias
                 : asistencias
-                    .where((e) => e.referencia.nombre
-                        .toString()
-                        .toUpperCase()
-                        .contains(query.toUpperCase()))
+                    .where((e) =>
+                        e.referencia.nombre
+                            .toString()
+                            .toUpperCase()
+                            .contains(query.toUpperCase()) ||
+                        e.referencia.empresa
+                            .toString()
+                            .toUpperCase()
+                            .contains(query.toUpperCase()) ||
+                        e.referencia.cargo
+                            .toString()
+                            .toUpperCase()
+                            .contains(query.toUpperCase()))
                     .toList();
             return ListView.separated(
               itemCount: asistenciasSugeridas.length,

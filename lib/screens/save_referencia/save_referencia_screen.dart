@@ -6,6 +6,8 @@ import 'package:bniapp/services/sesion_service.dart';
 import 'package:bniapp/utils/app_state.dart';
 import 'package:bniapp/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 
 class SaveReferenciaScreen extends StatefulWidget {
@@ -71,6 +73,20 @@ class _SaveReferenciaScreenState extends State<SaveReferenciaScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          proximaSesion?.fechaHora == null
+                              ? ''
+                              : "Sesión : " +
+                                  DateFormat("dd 'de' MMM", 'es')
+                                      .format(proximaSesion?.fechaHora),
+                          style: TextStyle(fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
