@@ -100,7 +100,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             try {
                               FirebaseUser user =
                                   (await _auth.signInWithEmailAndPassword(
-                                          email: email, password: password))
+                                          email: email.trim(),
+                                          password: password))
                                       .user;
                               if (user != null) {
                                 await _appState.loadAppState();
