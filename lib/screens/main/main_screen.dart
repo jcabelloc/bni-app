@@ -33,8 +33,8 @@ class _MainScreenState extends State<MainScreen> {
     loggedInUser = _appState.user;
     usuario = _appState.usuario;
     miembro = _appState.miembro;
+    _opcionesWidget = [InicioPage(), ReferenciaPage(), ReferenciasPage()];
     initData();
-    _opcionesWidget.addAll([InicioPage(), ReferenciaPage(), ReferenciasPage()]);
   }
 
   void initData() async {

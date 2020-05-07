@@ -6,9 +6,9 @@ import 'package:bniapp/services/usuario_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AppState {
-  FirebaseUser user;
-  Usuario usuario;
-  Miembro miembro;
+  FirebaseUser _user;
+  Usuario _usuario;
+  Miembro _miembro;
 
   static final AppState _instance = AppState._privateConstructor();
 
@@ -16,12 +16,16 @@ class AppState {
 
   AppState._privateConstructor();
 
-  Future<void> initAppState() async {
+  Future<void> loadAppState() async {
     final _authService = AuthService();
     final _usuarioService = UsuarioService();
     final _miembroService = MiembroService();
-    user = await _authService.getCurrentUser();
-    usuario = await _usuarioService.getById(user.uid);
-    miembro = await _miembroService.getById(usuario.idMiembro);
+    _user = await _authService.getCurrentUser();
+    _usuario = await _usuarioService.getById(user.uid);
+    _miembro = await _miembroService.getById(usuario.idMiembro);
   }
+
+  FirebaseUser get user => _user;
+  Usuario get usuario => _usuario;
+  Miembro get miembro => _miembro;
 }

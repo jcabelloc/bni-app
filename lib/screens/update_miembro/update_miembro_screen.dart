@@ -21,7 +21,6 @@ class _UpdateMiembroScreenState extends State<UpdateMiembroScreen> {
   AppState _appState = AppState.instance;
   MiembroService _miembroService = MiembroService();
   UsuarioService _usuarioService = UsuarioService();
-  bool showSpinner = false;
   final _formKey = GlobalKey<FormState>();
 
   Usuario usuario;
@@ -32,6 +31,9 @@ class _UpdateMiembroScreenState extends State<UpdateMiembroScreen> {
   TextEditingController _telefonoTextController;
   TextEditingController _empresaTextController;
   TextEditingController _profesionTextController;
+
+  bool showSpinner = false;
+  File nuevoAvatar;
 
   @override
   void initState() {
@@ -63,10 +65,16 @@ class _UpdateMiembroScreenState extends State<UpdateMiembroScreen> {
                     Stack(
                       alignment: AlignmentDirectional.bottomEnd,
                       children: <Widget>[
-                        CircleAvatar(
-                          radius: 64,
-                          backgroundImage: NetworkImage(miembro.avatarUrl),
-                        ),
+                        nuevoAvatar == null
+                            ? CircleAvatar(
+                                radius: 64,
+                                backgroundImage:
+                                    NetworkImage(miembro.avatarUrl),
+                              )
+                            : CircleAvatar(
+                                radius: 64,
+                                backgroundImage: FileImage(nuevoAvatar),
+                              ),
                         Positioned(
                           bottom: -10,
                           right: -10,
@@ -74,25 +82,12 @@ class _UpdateMiembroScreenState extends State<UpdateMiembroScreen> {
                             color: Theme.of(context).primaryColor,
                             iconSize: 32,
                             onPressed: () async {
-                              File image = await ImagePicker.pickImage(
+                              nuevoAvatar = await ImagePicker.pickImage(
                                   source: ImageSource.gallery,
                                   maxHeight: 200,
                                   maxWidth: 200);
-                              setState(() => showSpinner = true);
-                              await _miembroService.uploadAvatar(
-                                  miembro.idMiembro, image);
-                              String avatarUrl = await _miembroService
-                                  .getAvatarUrl(miembro.idMiembro);
-                              miembro.avatarUrl = avatarUrl;
-                              usuario.avatarUrl = avatarUrl;
-                              await _miembroService.save(miembro);
-                              await _usuarioService.save(usuario);
-                              _appState.miembro.avatarUrl = avatarUrl;
-                              _appState.usuario.avatarUrl = avatarUrl;
-                              setState(() {
-                                miembro = miembro;
-                                showSpinner = false;
-                              });
+                              if (nuevoAvatar != null)
+                                setState(() => nuevoAvatar);
                             },
                             icon: Icon(Icons.camera_alt),
                           ),
@@ -202,6 +197,14 @@ class _UpdateMiembroScreenState extends State<UpdateMiembroScreen> {
                           onPressed: () async {
                             if (_formKey.currentState.validate()) {
                               setState(() => showSpinner = true);
+                              if (nuevoAvatar != null) {
+                                await _miembroService.uploadAvatar(
+                                    miembro.idMiembro, nuevoAvatar);
+                                String avatarUrl = await _miembroService
+                                    .getAvatarUrl(miembro.idMiembro);
+                                miembro.avatarUrl = avatarUrl;
+                                usuario.avatarUrl = avatarUrl;
+                              }
                               await _miembroService.save(miembro);
                               await _usuarioService.save(usuario);
 
@@ -209,7 +212,7 @@ class _UpdateMiembroScreenState extends State<UpdateMiembroScreen> {
                               Future.delayed(
                                   const Duration(
                                       milliseconds: kMiliSegundosEspera), () {
-                                _appState.initAppState();
+                                _appState.loadAppState();
                                 Navigator.pop(context, 'saved');
                                 setState(() => showSpinner = false);
                               });

@@ -13,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool showSpinner = false;
+  AppState _appState = AppState.instance;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String email;
@@ -102,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           email: email, password: password))
                                       .user;
                               if (user != null) {
-                                await AppState.instance.initAppState();
+                                await _appState.loadAppState();
                                 Navigator.pushNamed(context, MainScreen.id);
                               }
                             } catch (e) {
@@ -112,9 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ));
                               print(e); // TODO
                             } finally {
-                              setState(() {
-                                showSpinner = false;
-                              });
+                              setState(() => showSpinner = false);
                             }
                           },
                           child: Text('INGRESAR'),
