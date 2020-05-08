@@ -1,3 +1,4 @@
+import 'package:bniapp/screens/view-referencia/view_referencia_screen.dart';
 import 'package:flutter/material.dart';
 import 'utils/constants.dart';
 import 'screens/login/login_screen.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         MainScreen.id: (context) => MainScreen(),
         SaveReferenciaScreen.id: (context) => SaveReferenciaScreen(),
         UpdateMiembroScreen.id: (context) => UpdateMiembroScreen(),
+        ViewReferenciaScreen.id: (context) => ViewReferenciaScreen(),
       },
     );
   }
