@@ -50,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           fontSize: 32,
-                          fontFamily: 'Pacifico',
+                          fontFamily: 'Roboto',
                           color: Theme.of(context).primaryColor),
                     ),
                     SizedBox(
