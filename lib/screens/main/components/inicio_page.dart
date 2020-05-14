@@ -1,6 +1,7 @@
 import 'package:bniapp/components/miembro_card.dart';
 import 'package:bniapp/models/miembro.dart';
 import 'package:bniapp/models/sesion.dart';
+import 'package:bniapp/services/grupo_service.dart';
 import 'package:bniapp/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -8,8 +9,9 @@ import 'package:intl/intl.dart';
 class InicioPage extends StatelessWidget {
   final Miembro miembro;
   final Sesion proximaSesion;
+  final String avatarGrupoUrl;
 
-  InicioPage({this.miembro, this.proximaSesion});
+  InicioPage({this.miembro, this.proximaSesion, this.avatarGrupoUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +24,21 @@ class InicioPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Hero(
-                  tag: 'logo',
-                  child: Container(
-                    width: 128,
-                    child: Image.asset('images/bni_logo.jpg'),
+                Container(
+                  margin: EdgeInsets.only(bottom: 10.0),
+                  width: 200,
+                  height: 190,
+                  child: CircleAvatar(
+                    radius: 32,
+                    backgroundColor: Colors.white,
+                    backgroundImage: avatarGrupoUrl != null
+                        ? NetworkImage(avatarGrupoUrl ?? '')
+                        : AssetImage('images/default-avatar-group.jpg'),
                   ),
+                ),
+                Text(
+                  miembro?.nombreGrupo ?? '',
+                  style: Theme.of(context).textTheme.subhead,
                 ),
                 SizedBox(
                   height: 32,
