@@ -2,12 +2,7 @@ import 'package:bniapp/screens/main/components/referencias_list.dart';
 import 'package:bniapp/screens/main/components/referencias_search_page.dart';
 import 'package:flutter/material.dart';
 
-class ReferenciasPage extends StatefulWidget {
-  @override
-  _ReferenciasPageState createState() => _ReferenciasPageState();
-}
-
-class _ReferenciasPageState extends State<ReferenciasPage> {
+class ReferenciasPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

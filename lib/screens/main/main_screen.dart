@@ -1,13 +1,12 @@
 import 'package:bniapp/models/miembro.dart';
 import 'package:bniapp/models/sesion.dart';
-import 'package:bniapp/models/usuario.dart';
 import 'package:bniapp/screens/main/components/inicio_page.dart';
 import 'package:bniapp/screens/main/components/referencia_page.dart';
 import 'package:bniapp/screens/main/components/referencias_page.dart';
 import 'package:bniapp/services/sesion_service.dart';
-import 'package:bniapp/utils/app_state.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:bniapp/utils/miembro_state.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -17,11 +16,8 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final _appState = AppState.instance;
   final _sesionService = new SesionService();
 
-  FirebaseUser loggedInUser;
-  Usuario usuario;
   Miembro miembro;
   Sesion proximaSesion;
 
@@ -30,10 +26,9 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    loggedInUser = _appState.user;
-    usuario = _appState.usuario;
-    miembro = _appState.miembro;
+    super.initState();
     _opcionesWidget = [InicioPage(), ReferenciaPage(), ReferenciasPage()];
+    miembro = Provider.of<MiembroState>(context, listen: false).miembro;
     initData();
   }
 
@@ -42,7 +37,6 @@ class _MainScreenState extends State<MainScreen> {
     setState(() {
       _opcionesWidget = [
         InicioPage(
-          miembro: miembro,
           proximaSesion: proximaSesion,
         ),
         ReferenciaPage(

@@ -23,6 +23,7 @@ class _ReferenciaPageState extends State<ReferenciaPage> {
 
   @override
   void initState() {
+    super.initState();
     initData();
   }
 

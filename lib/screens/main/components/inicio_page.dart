@@ -1,15 +1,13 @@
 import 'package:bniapp/components/miembro_card.dart';
-import 'package:bniapp/models/miembro.dart';
 import 'package:bniapp/models/sesion.dart';
 import 'package:bniapp/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class InicioPage extends StatelessWidget {
-  final Miembro miembro;
   final Sesion proximaSesion;
 
-  InicioPage({this.miembro, this.proximaSesion});
+  InicioPage({this.proximaSesion});
 
   @override
   Widget build(BuildContext context) {

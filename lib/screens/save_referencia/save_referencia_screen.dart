@@ -3,12 +3,13 @@ import 'package:bniapp/models/miembro.dart';
 import 'package:bniapp/models/sesion.dart';
 import 'package:bniapp/services/asistencia_service.dart';
 import 'package:bniapp/services/sesion_service.dart';
-import 'package:bniapp/utils/app_state.dart';
+import 'package:bniapp/utils/miembro_state.dart';
 import 'package:bniapp/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:provider/provider.dart';
 
 class SaveReferenciaScreen extends StatefulWidget {
   static const String id = 'save_referencia_screen';
@@ -18,7 +19,6 @@ class SaveReferenciaScreen extends StatefulWidget {
 }
 
 class _SaveReferenciaScreenState extends State<SaveReferenciaScreen> {
-  AppState _appState = AppState.instance;
   SesionService _sesionService = SesionService();
   AsistenciaService _asistenciaService = AsistenciaService();
   final _formKey = GlobalKey<FormState>();
@@ -31,11 +31,11 @@ class _SaveReferenciaScreenState extends State<SaveReferenciaScreen> {
   TextEditingController _empresaTextController;
   TextEditingController _cargoTextController;
   TextEditingController _nombreTextController;
-  TextEditingController _fechaHoraTextController;
 
   @override
   void initState() {
-    miembro = _appState.miembro;
+    super.initState();
+    miembro = Provider.of<MiembroState>(context, listen: false).miembro;
     initData();
   }
 
@@ -43,6 +43,7 @@ class _SaveReferenciaScreenState extends State<SaveReferenciaScreen> {
     proximaSesion = await _sesionService.getProximaSesion(miembro.idGrupo);
     proximaAsistencia = await _asistenciaService.getById(
         proximaSesion.idSesion, miembro.idMiembro);
+    // Crear Proxima Asistencia en caso no exista
     proximaAsistencia ??=
         Asistencia.fromSesionAndMiembro(proximaSesion, miembro);
 

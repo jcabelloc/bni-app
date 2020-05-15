@@ -1,5 +1,7 @@
 import 'package:bniapp/screens/view-referencia/view_referencia_screen.dart';
+import 'package:bniapp/utils/miembro_state.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'utils/constants.dart';
 import 'screens/login/login_screen.dart';
 import 'package:bniapp/screens/login/login_screen.dart';
@@ -15,25 +17,28 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData.light().copyWith(
-        primaryColor: kPrimaryColor,
-        primaryColorDark: kPrimaryColorDark,
-        primaryColorLight: kPrimaryColorLight,
-        buttonTheme: ButtonTheme.of(context).copyWith(
-          buttonColor: kPrimaryColor,
-          textTheme: ButtonTextTheme.primary,
+    return ChangeNotifierProvider(
+      create: (context) => MiembroState(),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData.light().copyWith(
+          primaryColor: kPrimaryColor,
+          primaryColorDark: kPrimaryColorDark,
+          primaryColorLight: kPrimaryColorLight,
+          buttonTheme: ButtonTheme.of(context).copyWith(
+            buttonColor: kPrimaryColor,
+            textTheme: ButtonTextTheme.primary,
+          ),
         ),
+        initialRoute: LoginScreen.id,
+        routes: {
+          LoginScreen.id: (context) => LoginScreen(),
+          MainScreen.id: (context) => MainScreen(),
+          SaveReferenciaScreen.id: (context) => SaveReferenciaScreen(),
+          UpdateMiembroScreen.id: (context) => UpdateMiembroScreen(),
+          ViewReferenciaScreen.id: (context) => ViewReferenciaScreen(),
+        },
       ),
-      initialRoute: LoginScreen.id,
-      routes: {
-        LoginScreen.id: (context) => LoginScreen(),
-        MainScreen.id: (context) => MainScreen(),
-        SaveReferenciaScreen.id: (context) => SaveReferenciaScreen(),
-        UpdateMiembroScreen.id: (context) => UpdateMiembroScreen(),
-        ViewReferenciaScreen.id: (context) => ViewReferenciaScreen(),
-      },
     );
   }
 }

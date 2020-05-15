@@ -1,8 +1,9 @@
 import 'package:bniapp/screens/main/main_screen.dart';
-import 'package:bniapp/utils/app_state.dart';
+import 'package:bniapp/utils/miembro_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
@@ -13,11 +14,16 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool showSpinner = false;
-  AppState _appState = AppState.instance;
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   String email;
   String password;
+
+  @override
+  void initState() {
+    super.initState();
+    _auth.currentUser().then((user) => print(user.uid));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +110,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                           password: password))
                                       .user;
                               if (user != null) {
-                                await _appState.loadAppState();
+                                await Provider.of<MiembroState>(context,
+                                        listen: false)
+                                    .loadSessionData();
                                 Navigator.pushNamed(context, MainScreen.id);
                               }
                             } catch (e) {

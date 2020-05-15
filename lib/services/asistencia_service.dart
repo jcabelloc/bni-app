@@ -9,7 +9,7 @@ class AsistenciaService {
 
   Future<Asistencia> getById(String idSesion, String idMiembro) async {
     DocumentSnapshot doc =
-        await asistenciasRef.document('${idSesion}_${idMiembro}').get();
+        await asistenciasRef.document('${idSesion}_$idMiembro').get();
     return (doc.data != null) ? Asistencia.fromSnapshot(doc) : null;
   }
 
