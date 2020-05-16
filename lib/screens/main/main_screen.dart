@@ -3,6 +3,7 @@ import 'package:bniapp/models/sesion.dart';
 import 'package:bniapp/screens/main/components/inicio_page.dart';
 import 'package:bniapp/screens/main/components/referencia_page.dart';
 import 'package:bniapp/screens/main/components/referencias_page.dart';
+import 'package:bniapp/services/grupo_service.dart';
 import 'package:bniapp/services/sesion_service.dart';
 import 'package:bniapp/utils/miembro_state.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +18,11 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final _sesionService = new SesionService();
+  final _grupoService = new GrupoService();
 
   Miembro miembro;
   Sesion proximaSesion;
-
+  String avatarGrupoUrl;
   List<Widget> _opcionesWidget = [];
   int _selectedIndex = 0;
 
@@ -34,10 +36,12 @@ class _MainScreenState extends State<MainScreen> {
 
   void initData() async {
     proximaSesion = await _sesionService.getProximaSesion(miembro.idGrupo);
+    avatarGrupoUrl = await _grupoService.getAvatarUrl(miembro.idGrupo);
     setState(() {
       _opcionesWidget = [
         InicioPage(
           proximaSesion: proximaSesion,
+          avatarGrupoUrl: avatarGrupoUrl,
         ),
         ReferenciaPage(
           miembro: miembro,

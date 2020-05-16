@@ -20,12 +20,6 @@ class _LoginScreenState extends State<LoginScreen> {
   String password;
 
   @override
-  void initState() {
-    super.initState();
-    _auth.currentUser().then((user) => print(user.uid));
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Builder(
@@ -43,12 +37,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Padding(
                       padding: EdgeInsets.all(8),
-                      child: Hero(
-                        tag: 'logo',
-                        child: Container(
-                          height: 128,
-                          child: Image.asset('images/bni_logo.jpg'),
-                        ),
+                      child: Container(
+                        height: 128,
+                        child: Image.asset('images/bni_logo.jpg'),
                       ),
                     ),
                     Text(

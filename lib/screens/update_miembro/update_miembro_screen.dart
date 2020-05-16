@@ -31,7 +31,6 @@ class _UpdateMiembroScreenState extends State<UpdateMiembroScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //miembro = Provider.of<AppSessionData>(context, listen: false).miembro;
     return Scaffold(
       appBar: AppBar(
         title: Text('Actualizar datos'),
