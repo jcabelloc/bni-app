@@ -1,3 +1,4 @@
+import 'package:bniapp/screens/check_screen.dart';
 import 'package:bniapp/screens/view-referencia/view_referencia_screen.dart';
 import 'package:bniapp/utils/miembro_state.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +31,9 @@ class MyApp extends StatelessWidget {
             textTheme: ButtonTextTheme.primary,
           ),
         ),
-        initialRoute: LoginScreen.id,
+        initialRoute: CheckScreen.id,
         routes: {
+          CheckScreen.id: (context) => CheckScreen(),
           LoginScreen.id: (context) => LoginScreen(),
           MainScreen.id: (context) => MainScreen(),
           SaveReferenciaScreen.id: (context) => SaveReferenciaScreen(),

@@ -103,8 +103,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               if (user != null) {
                                 await Provider.of<MiembroState>(context,
                                         listen: false)
-                                    .loadSessionData();
-                                Navigator.pushNamed(context, MainScreen.id);
+                                    .loadMiembro();
+                                Navigator.pushReplacementNamed(
+                                    context, MainScreen.id);
                               }
                             } catch (e) {
                               Scaffold.of(context).showSnackBar(SnackBar(

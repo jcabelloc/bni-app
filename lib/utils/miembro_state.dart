@@ -14,7 +14,7 @@ class MiembroState extends ChangeNotifier {
 
   Miembro get miembro => _miembro;
 
-  Future<void> loadSessionData() async {
+  Future<void> loadMiembro() async {
     FirebaseUser _user = await _authService.getCurrentUser();
     Usuario _usuario = await _usuarioService.getById(_user.uid);
     _miembro = await _miembroService.getById(_usuario.idMiembro);

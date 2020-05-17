@@ -6,4 +6,8 @@ class AuthService {
   Future<FirebaseUser> getCurrentUser() {
     return _auth.currentUser();
   }
+
+  Future<void> logout() {
+    return _auth.signOut();
+  }
 }
