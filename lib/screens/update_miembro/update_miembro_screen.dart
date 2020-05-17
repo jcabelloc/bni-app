@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:bniapp/models/miembro.dart';
+import 'package:bniapp/screens/login/login_screen.dart';
+import 'package:bniapp/services/auth_service.dart';
 import 'package:bniapp/services/miembro_service.dart';
 import 'package:bniapp/utils/miembro_state.dart';
 import 'package:flutter/material.dart';
@@ -15,9 +17,12 @@ class UpdateMiembroScreen extends StatefulWidget {
   _UpdateMiembroScreenState createState() => _UpdateMiembroScreenState();
 }
 
+enum MenuOption { salir }
+
 class _UpdateMiembroScreenState extends State<UpdateMiembroScreen> {
   MiembroService _miembroService = MiembroService();
   final _formKey = GlobalKey<FormState>();
+  final _authService = AuthService();
 
   Miembro miembro;
   bool showSpinner = false;
@@ -34,6 +39,29 @@ class _UpdateMiembroScreenState extends State<UpdateMiembroScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Actualizar datos'),
+        actions: <Widget>[
+          PopupMenuButton<MenuOption>(
+            onSelected: (MenuOption result) {
+              switch (result) {
+                case MenuOption.salir:
+                  {
+                    _authService.logout();
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, LoginScreen.id, (route) => false);
+                    break;
+                  }
+              }
+            },
+            itemBuilder: (BuildContext context) => <PopupMenuEntry<MenuOption>>[
+              const PopupMenuItem<MenuOption>(
+                  value: MenuOption.salir,
+                  child: ListTile(
+                    leading: Icon(Icons.exit_to_app),
+                    title: Text('Salir'),
+                  )),
+            ],
+          )
+        ],
       ),
       body: ModalProgressHUD(
         inAsyncCall: showSpinner,
