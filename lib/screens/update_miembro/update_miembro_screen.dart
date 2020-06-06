@@ -79,8 +79,9 @@ class _UpdateMiembroScreenState extends State<UpdateMiembroScreen> {
                         nuevoAvatar == null
                             ? CircleAvatar(
                                 radius: 64,
-                                backgroundImage:
-                                    NetworkImage(miembro.avatarUrl),
+                                backgroundImage: miembro.avatarUrl != null
+                                    ? NetworkImage(miembro.avatarUrl ?? '')
+                                    : AssetImage('images/avatar-placeholder.gif'),
                               )
                             : CircleAvatar(
                                 radius: 64,
