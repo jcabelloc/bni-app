@@ -31,7 +31,7 @@ class InicioPage extends StatelessWidget {
                     radius: 32,
                     backgroundColor: Colors.white,
                     backgroundImage: avatarGrupoUrl != null
-                        ? NetworkImage(avatarGrupoUrl ?? '')
+                        ? NetworkImage(avatarGrupoUrl)
                         : AssetImage('images/default-avatar-group.jpg'),
                   ),
                 ),

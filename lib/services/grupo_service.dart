@@ -10,7 +10,13 @@ class GrupoService {
       FirebaseStorage().ref().child('avatar_grupos');
 
   Future<dynamic> getAvatarUrl(String idGrupo) async {
-    StorageReference ref = gruposAvatarReference.child(idGrupo);
-    return ref.getDownloadURL();
+    dynamic url;
+    try {
+      StorageReference ref = gruposAvatarReference.child(idGrupo);
+      url = await ref.getDownloadURL();
+      return url;
+    } catch (e) {
+      return null;
+    }
   }
 }
