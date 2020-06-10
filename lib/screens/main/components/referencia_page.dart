@@ -28,12 +28,13 @@ class _ReferenciaPageState extends State<ReferenciaPage> {
   }
 
   void initData() async {
+    Asistencia asistencia;
     if (widget.miembro != null && widget.proximaSesion != null) {
-      proximaAsistencia = await _asistenciaService.getById(
+      asistencia = await _asistenciaService.getById(
           widget.proximaSesion.idSesion, widget.miembro.idMiembro);
     }
     setState(() {
-      proximaAsistencia = proximaAsistencia;
+      proximaAsistencia = asistencia;
     });
   }
 
