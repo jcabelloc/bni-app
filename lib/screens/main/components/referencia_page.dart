@@ -62,9 +62,10 @@ class _ReferenciaPageState extends State<ReferenciaPage> {
                     alignment: Alignment.topRight,
                     width: double.infinity,
                     child: Text(
-                      "Sesión : " +
+                      widget.proximaSesion != null ?
+                      "Sesión Nro. ${widget.proximaSesion?.numeroSesion}:   " +
                           DateFormat("dd 'de' MMM", 'es')
-                              .format(widget.proximaSesion?.fechaHora),
+                              .format(widget.proximaSesion?.fechaHora): '',
                       style: TextStyle(fontWeight: FontWeight.w600),
                     ),
                   ),

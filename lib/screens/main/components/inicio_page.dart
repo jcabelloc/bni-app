@@ -48,7 +48,7 @@ class InicioPage extends StatelessWidget {
                   padding: EdgeInsets.only(left: 32.0),
                   alignment: Alignment.bottomLeft,
                   child: Text(
-                    "Próxima Sesión",
+                    proximaSesion != null ? "Próxima Sesión Nro. ${proximaSesion?.numeroSesion}" : "No hay sesiones programadas",
                     style: TextStyle(
                         color: kPrimaryColorDark, fontWeight: FontWeight.bold),
                   ),

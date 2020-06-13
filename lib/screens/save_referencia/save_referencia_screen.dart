@@ -81,7 +81,7 @@ class _SaveReferenciaScreenState extends State<SaveReferenciaScreen> {
                         child: Text(
                           proximaSesion?.fechaHora == null
                               ? ''
-                              : "Sesión : " +
+                              : "Sesión Nro. ${proximaSesion?.numeroSesion}:   " +
                                   DateFormat("dd 'de' MMM", 'es')
                                       .format(proximaSesion?.fechaHora),
                           style: TextStyle(fontWeight: FontWeight.w600),
