@@ -7,6 +7,7 @@ class Sesion {
   DateTime fechaHora;
   String idGrupo;
   GeoPoint ubicacion;
+  int numeroSesion;
 
   static const String collectionId = 'sesiones';
 
@@ -16,10 +17,11 @@ class Sesion {
         direccion = snapshot['direccion'],
         fechaHora = (snapshot['fechaHora'] as Timestamp).toDate(),
         idGrupo = snapshot['idGrupo'],
-        ubicacion = snapshot['ubicacion'];
+        ubicacion = snapshot['ubicacion'],
+        numeroSesion = snapshot['numeroSesion'];
 
   @override
   String toString() {
-    return 'Sesion{idSesion: $idSesion, lugar: $lugar, direccion: $direccion, fechaHora: $fechaHora, idGrupo: $idGrupo, ubicacion: $ubicacion}';
+    return 'Sesion{idSesion: $idSesion, lugar: $lugar, direccion: $direccion, fechaHora: $fechaHora, idGrupo: $idGrupo, ubicacion: $ubicacion, numeroSesion: $numeroSesion}';
   }
 }
