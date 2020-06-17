@@ -11,6 +11,8 @@ class Asistencia {
   String nombreCompletoMiembro;
   String lugarSesion;
   Referencia referencia;
+  String idGrupo;
+  String nombreGrupo;
 
   static const String collectionId = 'asistencias';
 
@@ -22,6 +24,8 @@ class Asistencia {
         asistio = false,
         nombreCompletoMiembro = miembro.nombres + ' ' + miembro.apellidos,
         lugarSesion = sesion.lugar,
+        idGrupo = miembro.idGrupo,
+        nombreGrupo = miembro.nombreGrupo,
         referencia = Referencia();
 
   Asistencia.fromSnapshot(DocumentSnapshot snapshot)
@@ -32,6 +36,8 @@ class Asistencia {
         asistio = snapshot['asistio'],
         nombreCompletoMiembro = snapshot['nombreCompletoMiembro'],
         lugarSesion = snapshot['lugarSesion'],
+        idGrupo = snapshot['idGrupo'],
+        nombreGrupo = snapshot['nombreGrupo'],
         referencia = Referencia(
             empresa: snapshot['referencia']['empresa'],
             cargo: snapshot['referencia']['cargo'],
@@ -44,12 +50,14 @@ class Asistencia {
         'asistio': asistio,
         'nombreCompletoMiembro': nombreCompletoMiembro,
         'lugarSesion': lugarSesion,
+        'idGrupo': idGrupo,
+        'nombreGrupo': nombreGrupo,
         'referencia': referencia.toMap(),
       };
 
   @override
   String toString() {
-    return 'Asistencia{idAsistencia: $idAsistencia, idSesion: $idSesion, idMiembro: $idMiembro, fechaHora: $fechaHora, asistio: $asistio, nombreCompletoMiembro: $nombreCompletoMiembro, lugarSesion: $lugarSesion, referencia: $referencia}';
+    return 'Asistencia{idAsistencia: $idAsistencia, idSesion: $idSesion, idMiembro: $idMiembro, fechaHora: $fechaHora, asistio: $asistio, nombreCompletoMiembro: $nombreCompletoMiembro, lugarSesion: $lugarSesion, idGrupo: $idGrupo, nombreGrupo: $nombreGrupo, referencia: $referencia}';
   }
 }
 
